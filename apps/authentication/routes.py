@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -- encoding: utf-8 --
 """
 Copyright (c) 2019 - present AppSeed.us
 """
@@ -20,8 +20,12 @@ from apps.authentication.util import verify_pass
 
 @blueprint.route('/')
 def route_default():
-    return redirect(url_for('authentication_blueprint.login'))
+    # return redirect(url_for('authentication_blueprint.login'))
+    return redirect(url_for('home_blueprint.index'))
 
+@blueprint.route('/index')
+def index():
+    return render_template('home/index.html')
 
 # Login & Registration
 
@@ -46,12 +50,15 @@ def login():
         # Something (user or pass) is not ok
         return render_template('accounts/login.html',
                                msg='Wrong user or password',
-                               form=login_form)
+                               form=login_form,
+                               user_logged_in=current_user.is_authenticated)  # Tambahkan ini
 
     if not current_user.is_authenticated:
         return render_template('accounts/login.html',
-                               form=login_form)
+                               form=login_form,
+                               user_logged_in=current_user.is_authenticated)  # Tambahkan ini
     return redirect(url_for('home_blueprint.index'))
+
 
 
 @blueprint.route('/register', methods=['GET', 'POST'])
