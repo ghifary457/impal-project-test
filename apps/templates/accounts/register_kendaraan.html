@@ -1,0 +1,66 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} Sign IN {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main>
+
+        {% include 'includes/preloader.html' %}
+
+
+        <body>
+            <h1>Daftarkan Kendaraan</h1>
+            <form method="POST">
+                {{ form.hidden_tag() }}  <!-- Jika menggunakan CSRF token -->
+                <div>
+                    {{ form.jenis.label }}<br>
+                    {{ form.jenis(size=32) }}<br>
+                    {% for error in form.jenis.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div>
+                    {{ form.manufaktur.label }}<br>
+                    {{ form.manufaktur(size=32) }}<br>
+                    {% for error in form.manufaktur.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div>
+                    {{ form.tipe.label }}<br>
+                    {{ form.tipe(size=32) }}<br>
+                    {% for error in form.tipe.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div>
+                    {{ form.tahun.label }}<br>
+                    {{ form.tahun(size=32) }}<br>
+                    {% for error in form.tahun.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div>
+                    {{ form.noPlat.label }}<br>
+                    {{ form.noPlat(size=32) }}<br>
+                    {% for error in form.noPlat.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div>
+                    {{ form.submit() }}
+                </div>
+            </form>
+        </body>
+
+
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
